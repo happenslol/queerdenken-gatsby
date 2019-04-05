@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+@import "./variables";
+@import "~normalize-scss/sass/normalize";
+@import "~bulma/bulma";
+@import "./mixins";
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,900");
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC:400,700");
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin: auto 0 0 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+// content link styling
+.content {
+    a {
+        color: inherit;
+        position: relative;
+        
+        &::after {
+            display: block;
+            content: ' ';
+            position: absolute;
+            height: .5em;
+            background-color: rgba($link, .7);
+            bottom: 0;
+            border-radius: 2px;
+            z-index: -1;
+            left: 0;
+            right: 0;
+            margin: 0 2%;
+            transition: background-color .1s ease-in-out;
+        }
+        
+        &:hover {
+            &::after {
+                background-color: darken($link, 4%);
+            }
+        }
+    }
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.fancy-link {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+    &::after {
+        display: block;
+        content: ' ';
+        position: absolute;
+        height: .3em;
+        width: 0;
+        background-color: $primary;
+        border-radius: 4px;
+        bottom: -6px;
+        
+        transition: width .2s ease-in-out;
+    }
+    
+    &:hover, &:active, &.active {
+        &::after {
+            width: 60%;
+        }
+    }
+}
+
