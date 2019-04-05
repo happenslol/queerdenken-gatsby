@@ -13,13 +13,13 @@ export default props => (
                 paddingTop: "5rem",
                 position: "absolute",
                 zIndex: 1,
-                height: "144px",
-                width: "1920px",
+                minHeight: "100%",
+                width: "100vw",
             }}
             alt="header"
         />
         <div className="hero-body" style={{ zIndex: 2 }}>
-            <div className="container has-text-centered is-size-3">
+            <div className="container has-text-centered is-size-2">
                 <h1 className="has-text-weight-semibold">{props.title}</h1>
             </div>
         </div>

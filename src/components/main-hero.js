@@ -23,7 +23,7 @@ export default () => (
 
             return (
                 <header
-                    className="hero is-fullheight is-primary"
+                    className="hero is-fullheight is-primary main-hero"
                     style={{ position: "relative", overflow: "hidden" }}
                 >
                     <Img
