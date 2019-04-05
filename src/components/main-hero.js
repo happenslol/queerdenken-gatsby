@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
 import Img from "gatsby-image"
+import "../styles/main-hero.scss"
 
 export default () => (
     <StaticQuery
@@ -42,7 +43,6 @@ export default () => (
                                 alt="logo"
                             />
                             <h1 style={{
-                                fontSize: "8rem",
                                 fontWeight: "bold",
                                 fontFamily: "Amatic SC, cursive",
                             }}>

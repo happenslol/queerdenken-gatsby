@@ -20,7 +20,7 @@ nav {
     
     transition: all .25s ease-in-out;
     transition-property: background-color, color, box-shadow;
-    
+
     .logo {
         display: flex;
         align-items: center;
@@ -53,27 +53,44 @@ nav {
         display: flex;
         white-space: nowrap;
         
-        // @include respond-to(medium) {
-        //     display: block;
-        // }
-    }
-    
-    .navbar__dropdown  {
-        align-items: center;
-        display: none;
-        
         @include respond-to(medium) {
-            display: flex
+            display: none;
+            position: fixed;
+            top: 5rem;
+            right: 0;
+            padding: 0 4rem;
+            background-color: #FFF;
+            height: auto;
+            border-radius: 6px;
+            border-top-right-radius: 0;
+            font-size: 1.7rem;
+            border: 1px solid #CCC;
+
+            .link {
+                margin: 2rem 0;
+                color: #111;
+            }
+
+            &.toggled {
+                display: block;
+            }
         }
-        
-        .dropdown-trigger > a {
-            color: #FFF;
-            font-size: 1.5rem;
-        }
-        
-        .dropdown-item {
-            text-transform: uppercase;
-            font-weight: bold;
+    }
+
+    .toggle {
+        display: none;
+        position: fixed;
+
+        @include respond-to(medium) {
+            display: flex;
+            top: 0;
+            right: 0;
+            height: 5rem;
+            width: 5rem;
+            cursor: pointer;
+            color: #fff;
+            justify-content: center;
+            align-content: center;
         }
     }
     
@@ -87,6 +104,10 @@ nav {
         
         &::after {
             bottom: 1em;
+
+            @include respond-to(medium) {
+                bottom: 0;
+            }
         }
     }
     
@@ -104,6 +125,10 @@ nav {
         }
         
         .dropdown-trigger > a {
+            color: #111;
+        }
+
+        .toggle {
             color: #111;
         }
     }
