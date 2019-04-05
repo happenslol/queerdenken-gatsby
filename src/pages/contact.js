@@ -64,7 +64,7 @@ export default ({ data }) => (
                 </div>
 
                 <div className="column is-third content">
-                    <p><a href="mailto:info@queerdenken.de">info@queerdenken.de</a></p>
+                    <p className="is-size-4"><a href="mailto:info@queerdenken.de">info@queerdenken.de</a></p>
 
                     <p>
                         <strong>Instagram:</strong> <a href="https://www.instagram.com/queerdenken.de/">instagram.com/queerdenken.de</a><br />
