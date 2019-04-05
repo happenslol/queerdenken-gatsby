@@ -4,14 +4,13 @@ import Img from "gatsby-image"
 import { Link } from "gatsby"
 import "../styles/navbar.scss"
 
-import { key as homeKey } from "../pages/index"
 import { key as workshopsKey } from "../pages/workshops"
 import { key as contactKey } from "../pages/contact"
 
 const pages = [
     {
         url: "/",
-        key: homeKey,
+        key: "Home",
     },
     {
         url: "/workshops",

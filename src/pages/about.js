@@ -1,7 +1,6 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import Hero from "../components/hero"
@@ -29,6 +28,15 @@ export default ({ data }) => (
         <Helmet>
             <meta charSet="utf-8" />
             <title>{key} | Queerdenken</title>
+
+            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+            <link rel="manifest" href="/site.webmanifest" />
+            <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+            <meta name="msapplication-TileColor" content="#da532c" />
+            <meta name="theme-color" content="#ffffff" />
+
         </Helmet>
 
         <Header active={true} activeKey={key} />
@@ -44,18 +52,20 @@ export default ({ data }) => (
                         alignItems: "center",
                     }}
                 >
-                    <img src={meImg}
+                    <img
+                        alt="Julia Wirth"
+                        src={meImg}
                         style={{ borderRadius: "6px" }}
                     />
                 </div>
 
                 <div className="column is-7 content is-size-5">
                     <p>
-                        Unterrichten war schon immer mein Traum. Dass ich das nicht klassisch in der Schule oder an der Uni tun würde, hatte ich zunächst gar nicht auf dem Schirm. Dann kam die Hessische Schülerakademie und meine erste Gelegenheit einen Kurs zum Thema Gender selbst zu gestalten - und dabei blieb ich hängen. Nicht nur, weil ich das Gefühl hatte, Inhalte zu vermitteln, die eine unmittelbare Auswirkung auf die Gruppe hatten, sondern auch, weil mich das Thema schon seit Jahren beschäftigt, fasziniert und frustriert.
+                        <strong>Unterrichten war schon immer mein Traum.</strong><br /><br />Dass ich das nicht klassisch in der Schule oder an der Uni tun würde, hatte ich zunächst gar nicht auf dem Schirm. Dann kam die Hessische Schülerakademie und meine erste Gelegenheit einen Kurs zum Thema Gender selbst zu gestalten - und dabei blieb ich hängen.<br />Nicht nur, weil ich das Gefühl hatte, Inhalte zu vermitteln, die eine unmittelbare Auswirkung auf die Gruppe hatten, sondern auch, weil mich das Thema schon seit Jahren beschäftigt, fasziniert und frustriert.
                     </p>
 
                     <p>
-                        Bereits während meines Studiums habe ich an verschiedenen Schulformen und mit verschiedenen Altersgruppen gearbeitet, an der Universität Studierende unterrichtet und im Rahmen von Ausstellungen und Projekten Bildungsangebote erarbeitet. Und egal ob in der Schule, der Uni, in der Vereinsarbeit oder in der außerschulischen Bildungsarbeit: Ich merke immer wieder, wie wenig Bewusstsein für den fundamentalen Einfluss von Geschlechterkategorien auf unser Leben überhaupt vorhanden ist und wie viel daran schlicht auf fehlendem Wissen beruht. Diese Wissenslücke möchte ich gerne angehen - einen Workshop nach dem anderen. 
+                        Bereits während meines Studiums habe ich an verschiedenen Schulformen und mit verschiedenen Altersgruppen gearbeitet, an der Universität Studierende unterrichtet und im Rahmen von Ausstellungen und Projekten Bildungsangebote erarbeitet.<br />Und egal ob in der Schule, der Uni, in der Vereinsarbeit oder in der außerschulischen Bildungsarbeit: Ich merke immer wieder, wie wenig Bewusstsein für den fundamentalen Einfluss von Geschlechterkategorien auf unser Leben überhaupt vorhanden ist und wie viel daran schlicht auf fehlendem Wissen beruht.<br /><br /><strong>Diese Wissenslücke möchte ich gerne angehen - einen Workshop nach dem anderen.</strong> 
                     </p>
                 </div>
             </div>

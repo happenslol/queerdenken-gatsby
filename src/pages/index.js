@@ -26,14 +26,14 @@ const sections = [
         image: "img1",
         content: (
             <React.Fragment>
-                <h2 className="is-size-4">Social Media</h2>
+                <h2 className="is-size-4" style={{ marginBottom: "1rem" }}>Social Media</h2>
                 <p>
                     Folgen Sie mir auf meinen Social Media-Kanälen für regelmäßige Updates und jede Menge Informatives rund um die Themen Gender und Sexualität. 
                 </p>
                 <div style={{
                     display: "flex",
                     justifyContent: "space-evenly",
-                    marginTop: "2rem",
+                    margin: "2rem 0",
                 }}>
                     <a href="https://twitter.com/queerdenkende"><i className="fab fa-3x fa-twitter" /></a>
                     <a href="https://twitter.com/queerdenkende"><i className="fab fa-3x fa-facebook-square" /></a>
@@ -47,7 +47,7 @@ const sections = [
         image: "img2",
         content: (
             <React.Fragment>
-                <h2 className="is-size-4">Andere Initiativen und Projekte</h2>
+                <h2 className="is-size-4" style={{ marginBottom: "1rem" }}>Andere Initiativen und Projekte</h2>
                 <p>
                     Sie sind ebenfalls in der Bildungs- und Antidiskriminierungsarbeit zum Thema Gender beschäftigt? Diese Website soll langfristig ein Informationsportal werden, das Initiativen, Projekte und Vereine dieser Art in Hessen zusammenträgt und an einer Stelle auffindbar macht.
                 </p>
@@ -59,8 +59,9 @@ const sections = [
         content: (
             <React.Fragment>
                 <p>
-                    Falls Sie also Interesse haben sich nicht nur mit mir auszutauschen, sondern auch auf dieser Website zu erscheinen, dann melden Sie sich bitte jederzeit. Egal ob Mädchenarbeit, Gewaltprävention, Bildung und Aufklärung - ich bin gespannt von Ihnen zu hören!
+                    Falls Sie also Interesse haben sich nicht nur mit mir auszutauschen, sondern auch auf dieser Website zu erscheinen, dann melden Sie sich bitte jederzeit. Egal ob Mädchenarbeit, Gewaltprävention, Bildung und Aufklärung -
                 </p>
+                <p><strong>ich bin gespannt von Ihnen zu hören!</strong></p>
             </React.Fragment>
         ),
     },
@@ -92,19 +93,41 @@ export default class IndexPage extends React.Component {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>Queerdenken</title>
+                    
+                    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+                    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+                    <link rel="manifest" href="/site.webmanifest" />
+                    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+                    <meta name="msapplication-TileColor" content="#da532c" />
+                    <meta name="theme-color" content="#ffffff" />
                 </Helmet>
 
                 <Header activeKey="none" active={this.state.scrolled} />
+                <i
+                    className="fas fa-3x fa-chevron-down"
+                    style={{
+                        position: "absolute",
+                        zIndex: 3,
+                        color: "white",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        top: "calc(100vh - 6rem)",
+                    }}
+                />
                 <MainHero />
 
                 <section className="section container" style={{ marginTop: "4rem" }}>
                     <div className="columns is-centered is-size-4">
                         <div className="column is-10">
+                            <p style={{ marginBottom: "2rem" }}><strong>
+                                Queerdenken ist ein Bildungs- und Aufklärungsprojekt, das zur kritischen Reflexion über gesellschaftlich normierte und normalisierte Geschlechterrollen befähigen will.
+                            </strong></p> 
                             <p>
-                                Queerdenken ist ein Bildungs- und Aufklärungsprojekt, das zur kritischen Reflexion über gesellschaftlich normierte und normalisierte Geschlechterrollen befähigen will. Zu diesem Thema biete ich Workshops, Fortbildungen und Vorträge sowohl für Schulklassen und Jugendgruppen als auch für Lehrkräfte im weitesten Sinne an - also alle Personen, die mit der (Aus-)Bildung und Betreuung von anderen Personen beschäftigt sind. Im Zentrum der Veranstaltungen steht eine alltagsnahe und übertragbare Vermittlung von Wissen und Kompetenzen zu den Wirkungsweisen von Geschlecht in unserem Leben, die für die Vielfalt von Geschlechtsentwürfen und -identitäten sensibilisieren und damit aktiv Vorurteile und Diskriminierung bekämpfen soll.
+                                Zu diesem Thema biete ich Workshops, Fortbildungen und Vorträge sowohl für Schulklassen und Jugendgruppen als auch für Lehrkräfte im weitesten Sinne an - also alle Personen, die mit der (Aus-)Bildung und Betreuung von anderen Personen beschäftigt sind. Im Zentrum der Veranstaltungen steht eine alltagsnahe und übertragbare Vermittlung von Wissen und Kompetenzen zu den Wirkungsweisen von Geschlecht in unserem Leben, die für die Vielfalt von Geschlechtsentwürfen und -identitäten sensibilisieren und damit aktiv Vorurteile und Diskriminierung bekämpfen soll.
                             </p>
 
-                            <p>
+                            <p style={{ marginTop: "2rem" }}>
                                 Erfahren Sie auf dieser Seite alles zum Projekt, zu den Angeboten und meiner Person.
                             </p>
                         </div>

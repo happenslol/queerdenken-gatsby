@@ -6,4 +6,5 @@ ssh dokku@queerdenken.de config:set --no-restart main DOKKU_LETSENCRYPT_EMAIL=me
 ssh dokku@queerdenken.de letsencrypt main
 touch public/.static
 cp -fv .dokku/* public
+cp -fv favicon/* public
 tar c public | ssh dokku@queerdenken.de tar:in main

@@ -1,6 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
+import { Link } from "gatsby"
 import Img from "gatsby-image"
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -39,6 +40,14 @@ export default ({ data }) => (
         <Helmet>
             <meta charSet="utf-8" />
             <title>{key} | Queerdenken</title>
+
+            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+            <link rel="manifest" href="/site.webmanifest" />
+            <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+            <meta name="msapplication-TileColor" content="#da532c" />
+            <meta name="theme-color" content="#ffffff" />
         </Helmet>
 
         <Header active={true} activeKey={key} />
@@ -48,11 +57,11 @@ export default ({ data }) => (
             <div className="columns is-centered">
                 <div className="column is-10 content is-size-5">
                     <p>
-                        Genderkompetenzen und gendersensibles Lernen und Lehren – das sind Stichworte, die immer häufiger in Lehrplänen, Stellenbeschreibungen und Leistungsprofilen, aber immer noch sehr selten in Lehramtsseminaren, Fortbildungen oder anderen Bildungsangeboten zu finden sind. Gerade in Schule und Kita, Ausbildungsstätte und Universität, Sportverein und Jugendclub lernen Kinder und Jugendliche jedoch jeden Tag auf's Neue, was es heißt ein "richtiger Junge" oder ein "richtiges Mädchen" zu sein und erfahren Ausgrenzungen, wenn sie diesem Bild nicht entsprechen.
+                        <strong>Genderkompetenzen und gendersensibles Lernen und Lehren</strong> – das sind Stichworte, die immer häufiger in Lehrplänen, Stellenbeschreibungen und Leistungsprofilen, aber immer noch sehr selten in Lehramtsseminaren, Fortbildungen oder anderen Bildungsangeboten zu finden sind.<br />Gerade in <strong>Schule</strong> und <strong>Kita</strong>, <strong>Ausbildungsstätte</strong> und <strong>Universität</strong>, <strong>Sportverein</strong> und <strong>Jugendclub</strong> lernen Kinder und Jugendliche jedoch jeden Tag auf's Neue, was es heißt ein <i>"richtiger Junge"</i> oder ein <i>"richtiges Mädchen"</i> zu sein und erfahren Ausgrenzungen, wenn sie diesem Bild nicht entsprechen.
                     </p>
 
                     <p>
-                        Queerdenken setzt an diesem Punkt an, um individuelle Entfaltungsmöglichkeiten und Vielfalt unabhängig von gesellschaftlich anerkannten Ideen von Weiblichkeit und Männlichkeit in den Mittelpunkt zu stellen. In Workshops und Fortbildungen sowohl für Lernende als auch Lehrende wird geschlechtliche "Normalität" reflektiert und als Konstruktion sowie sozialer Platzanweiser sichtbar gemacht, um daraus Schlussfolgerungen für einen respektvollen und reflektierten Umgang mit der Vielfalt von Identitäten und Lebensweisen zu ziehen, die uns im Alltag begegnen. 
+                        <strong><i>Queerdenken</i></strong> setzt an diesem Punkt an, um <strong>individuelle Entfaltungsmöglichkeiten und Vielfalt</strong> unabhängig von gesellschaftlich anerkannten Ideen von Weiblichkeit und Männlichkeit in den Mittelpunkt zu stellen.<br /><br />In Workshops und Fortbildungen sowohl für Lernende als auch Lehrende wird geschlechtliche <i>"Normalität"</i> reflektiert und als Konstruktion sowie sozialer Platzanweiser sichtbar gemacht, um daraus Schlussfolgerungen für einen respektvollen und reflektierten Umgang mit der Vielfalt von Identitäten und Lebensweisen zu ziehen, die uns im Alltag begegnen. 
                     </p>
 
                     <Sep margin="4rem 0 0 0" />
@@ -68,22 +77,28 @@ export default ({ data }) => (
                 style={{ borderRadius: "6px", margin: "2rem 0" }}
             />
 
-            <h4>Gender Awareness</h4>
+            <ul>
+                <li>
+                    <h4>Gender Awareness</h4>
+
+                    <p style={{ marginBottom: "2rem" }}>
+                    In diesem Angebot wird die Wahrnehmung für Geschlecht als soziale Konstruktion und als gesellschaftlicher Platzanweiser geschult. Scheinbar natürliche Vorstellungen von Gender werden als historisch und kulturell variabel aufgedeckt und damit Normalität hinterfragt, ein kritisches Bewusstsein für gesellschaftliche Prozesse gefördert und Ungleichheiten sichtbar gemacht.
+                    </p>
+                </li>
+
+                <li>
+                    <h4>
+                        Geschlechtliche und sexuelle Vielfalt
+                    </h4>
+
+                    <p style={{ marginBottom: "2rem" }}>
+                    Die Einheit macht das Leben von Personen mit nicht-normativen L(i)ebensentwürfen und Identitäten sichtbar und stellt in der Auseinandersetzung mit deren Vielfalt heteronormative Vorstellung einer scheinbaren Normalität von Heterosexualität und Weiblichkeit bzw. Männlichkeit infrage.
+                    </p>
+                </li>
+            </ul>
 
             <p>
-            In diesem Angebot wird die Wahrnehmung für Geschlecht als soziale Konstruktion und als gesellschaftlicher Platzanweiser geschult. Scheinbar natürliche Vorstellungen von Gender werden als historisch und kulturell variabel aufgedeckt und damit Normalität hinterfragt, ein kritisches Bewusstsein für gesellschaftliche Prozesse gefördert und Ungleichheiten sichtbar gemacht.
-            </p>
-
-            <h4>
-                Geschlechtliche und sexuelle Vielfalt
-            </h4>
-
-            <p>
-            Die Einheit macht das Leben von Personen mit nicht-normativen L(i)ebensentwürfen und Identitäten sichtbar und stellt in der Auseinandersetzung mit deren Vielfalt heteronormative Vorstellung einer scheinbaren Normalität von Heterosexualität und Weiblichkeit bzw. Männlichkeit infrage.
-            </p>
-
-            <p>
-            Folgende Formate eignen sich für die Behandlung dieser Themen:
+            <strong>Folgende Formate eignen sich für die Behandlung dieser Themen:</strong>
             </p>
 
             <ul>
@@ -98,7 +113,7 @@ export default ({ data }) => (
             </p>
 
             <p>
-            Alle Angebote sind zeitlich flexibel und finden bei Ihnen vor Ort statt.
+            Alle Angebote sind <strong>zeitlich flexibel</strong> und finden bei Ihnen <strong>vor Ort</strong> statt.
             </p>
         </Sec>
 
@@ -134,7 +149,7 @@ export default ({ data }) => (
             </p>
 
             <p>
-            Alle Angebote sind zeitlich flexibel und finden bei Ihnen vor Ort statt. Bei Bedarf kann ein geeigneter Raum angemietet werden.
+            Alle Angebote sind <strong>zeitlich flexibel</strong> und finden bei Ihnen <strong>vor Ort</strong> statt. Bei Bedarf kann ein geeigneter Raum angemietet werden.
             </p>
                     </Sec>
 
@@ -169,12 +184,12 @@ export default ({ data }) => (
             <Sep margin="0 0 4rem 0" />
             <h3>Buchung</h3>
 
-<p>
+<p className="is-size-4">
 Sie wollen einen Workshop oder eine Fortbildung buchen oder sich unverbindlich über meine Angebote informieren?
 </p>
 
-<p>
-Dann kontaktieren Sie mich wahlweise über das Kontaktformular, per Mail oder per Telefon und teilen Sie mir Ihre Wünsche und Ideen mit – ich passe mein Angebot gern individuell an Ihre Bedürfnisse an.
+<p className="is-size-4">
+Dann <Link to="/contact">kontaktieren Sie mich wahlweise über das Kontaktformular, per Mail oder per Telefon</Link> und teilen Sie mir Ihre Wünsche und Ideen mit.<br /><br /><strong>Ich passe mein Angebot gern individuell an Ihre Bedürfnisse an!</strong>
 </p>
         </Sec>
 
