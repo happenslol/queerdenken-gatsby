@@ -4,9 +4,6 @@ import Img from "gatsby-image"
 import { Link } from "gatsby"
 import "../styles/navbar.scss"
 
-import { key as workshopsKey } from "../pages/workshops"
-import { key as contactKey } from "../pages/contact"
-
 const pages = [
     {
         url: "/",
@@ -14,7 +11,7 @@ const pages = [
     },
     {
         url: "/workshops",
-        key: workshopsKey,
+        key: "Workshops",
     },
     {
         url: "/about",
@@ -22,7 +19,7 @@ const pages = [
     },
     {
         url: "/contact",
-        key: contactKey,
+        key: "Kontakt",
     },
 ]
 
