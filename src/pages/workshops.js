@@ -6,8 +6,7 @@ import Img from "gatsby-image"
 import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import Hero from "../components/hero"
-import Sep from "../components/separator"
-import Sec from "../components/section"
+import { Section, Hr } from "../components/common"
 
 export const key = "Workshops"
 export const query = graphql`
@@ -64,12 +63,12 @@ export default ({ data }) => (
                         <strong><i>Queerdenken</i></strong> setzt an diesem Punkt an, um <strong>individuelle Entfaltungsmöglichkeiten und Vielfalt</strong> unabhängig von gesellschaftlich anerkannten Ideen von Weiblichkeit und Männlichkeit in den Mittelpunkt zu stellen.<br /><br />In Workshops und Fortbildungen sowohl für Lernende als auch Lehrende wird geschlechtliche <i>"Normalität"</i> reflektiert und als Konstruktion sowie sozialer Platzanweiser sichtbar gemacht, um daraus Schlussfolgerungen für einen respektvollen und reflektierten Umgang mit der Vielfalt von Identitäten und Lebensweisen zu ziehen, die uns im Alltag begegnen. 
                     </p>
 
-                    <Sep margin="4rem 0 0 0" />
+                    <Hr margin="4rem 0 0 0" />
                 </div>
             </div>
         </section>
 
-        <Sec>
+        <Section>
             <h3>Schwerpunkte für Schulklassen und Jugendgruppen</h3>
 
             <Img
@@ -115,10 +114,10 @@ export default ({ data }) => (
             <p>
             Alle Angebote sind <strong>zeitlich flexibel</strong> und finden bei Ihnen <strong>vor Ort</strong> statt.
             </p>
-        </Sec>
+        </Section>
 
 
-        <Sec>
+        <Section>
             <h3>Schwerpunkte für Lehrende und Betreuungspersonen</h3>
 
             <Img
@@ -151,12 +150,12 @@ export default ({ data }) => (
             <p>
             Alle Angebote sind <strong>zeitlich flexibel</strong> und finden bei Ihnen <strong>vor Ort</strong> statt. Bei Bedarf kann ein geeigneter Raum angemietet werden.
             </p>
-                    </Sec>
+                    </Section>
 
                     <section className="section container">
                         <div className="columns is-centered">
                             <div className="column is-10 content is-size-5">
-                                <Sep margin="0 0 4rem 0" />
+                                <Hr margin="0 0 4rem 0" />
 
                                 <h3>Methodischer Zugang</h3>
 
@@ -180,8 +179,8 @@ export default ({ data }) => (
             </div>
         </section>
 
-        <Sec>
-            <Sep margin="0 0 4rem 0" />
+        <Section>
+            <Hr margin="0 0 4rem 0" />
             <h3>Buchung</h3>
 
 <p className="is-size-4">
@@ -191,7 +190,7 @@ Sie wollen einen Workshop oder eine Fortbildung buchen oder sich unverbindlich �
 <p className="is-size-4">
 Dann <Link to="/contact">kontaktieren Sie mich wahlweise über das Kontaktformular, per Mail oder per Telefon</Link> und teilen Sie mir Ihre Wünsche und Ideen mit.<br /><br /><strong>Ich passe mein Angebot gern individuell an Ihre Bedürfnisse an!</strong>
 </p>
-        </Sec>
+        </Section>
 
 
         <Footer />

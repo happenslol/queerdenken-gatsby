@@ -134,18 +134,19 @@ const sections = [
 ]
 
 export default class IndexPage extends React.Component {
-    state = { scrolled: false }
+    constructor(props) {
+        super(props)
+        this.state = { scrolled: false }
+    }
 
-    onScroll() {
-        if (window.scrollY > 0 && !this.state.scrolled) {
+    onScroll = () => {
+        if (window.scrollY > 0 && !this.state.scrolled)
             this.setState({ scrolled: true })
-        } else if (window.scrollY === 0 && this.state.scrolled) {
+        else if (window.scrollY === 0 && this.state.scrolled)
             this.setState({ scrolled: false })
-        }
     }
 
     componentDidMount() {
-        this.onScroll = this.onScroll.bind(this)
         window.addEventListener('scroll', this.onScroll)
     }
 

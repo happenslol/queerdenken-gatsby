@@ -4,7 +4,8 @@ import { graphql } from "gatsby"
 import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import Hero from "../components/hero"
-import Sep from "../components/separator"
+import { Hr } from "../components/common"
+
 import meImg from "../images/me.jpg"
 
 export const key = "Über Mich"
@@ -70,7 +71,7 @@ export default ({ data }) => (
             </div>
 
             <div className="columns is-centered">
-                <div className="column is-10"><Sep margin="4rem 0 0 0" /></div>
+                <div className="column is-10"><Hr margin="4rem 0 0 0" /></div>
             </div>
         </section>
 

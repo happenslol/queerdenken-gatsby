@@ -4,8 +4,7 @@ import { graphql } from "gatsby"
 import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import Hero from "../components/hero"
-import Sec from "../components/section"
-import Sep from "../components/separator"
+import { Section, Hr } from "../components/common"
 
 export const key = "Kontakt"
 export const query = graphql`
@@ -36,7 +35,7 @@ export default ({ data }) => (
         <Navbar active={true} activeKey={key} />
         <Hero title={key} imageData={data.background.childImageSharp.fluid} />
 
-        <Sec>
+        <Section>
             <p>
                 Sie wollen einen Workshop oder eine Fortbildung buchen?<br />
                 Sie brauchen Hilfe bei Fragen rund um das Thema Gender?<br />
@@ -49,7 +48,7 @@ export default ({ data }) => (
             <p style={{ textAlign: "center", marginTop: "4rem" }}>
                 <strong>Ich freue mich darauf von Ihnen zu hören!</strong>
             </p>
-        </Sec>
+        </Section>
 
         <section className="section container">
             <div className="columns is-centered has-text-centered">
@@ -85,7 +84,7 @@ export default ({ data }) => (
             </div>
 
             <div className="columns is-centered">
-                <div className="column is-10"><Sep /></div>
+                <div className="column is-10"><Hr /></div>
             </div>
         </section>
 
