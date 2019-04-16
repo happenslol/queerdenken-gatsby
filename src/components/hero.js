@@ -2,7 +2,7 @@ import React from "react"
 import Img from "gatsby-image"
 
 export default props => (
-    <section className="hero is-primary" style={{
+    <header className="hero is-primary" style={{
         marginTop: "5rem",
         position: "relative",
         overflow: "hidden",
@@ -23,5 +23,5 @@ export default props => (
                 <h1 className="has-text-weight-semibold">{props.title}</h1>
             </div>
         </div>
-    </section>
+    </header>
 )

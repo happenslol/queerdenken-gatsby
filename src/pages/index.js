@@ -1,24 +1,81 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import Header from "../components/header"
-import Footer from "../components/footer"
-import { Helmet } from "react-helmet"
+import styled from "styled-components"
 
-import MainHero from "../components/main-hero"
-import "@fortawesome/fontawesome-free/css/all.css"
+import Navbar from "../components/navbar"
+import Footer from "../components/footer"
+import Meta from "../components/meta"
+
+import { FaTwitter, FaInstagram, FaFacebookSquare, FaLinkedin } from "react-icons/fa"
 
 export const key = "Home"
 export const query = graphql`
-fragment fluidImage on File {
-    childImageSharp { fluid(maxWidth: 600) { ...GatsbyImageSharpFluid_withWebp }}
-}
+    fragment fluidImage on File {
+        childImageSharp { fluid(maxWidth: 600) { ...GatsbyImageSharpFluid_withWebp }}
+    }
 
-query {
-    img1: file(relativePath: { eq: "front1.jpg" }) { ...fluidImage }
-    img2: file(relativePath: { eq: "front2.jpg" }) { ...fluidImage }
-    img3: file(relativePath: { eq: "front3.jpg" }) { ...fluidImage }
-}
+    query {
+        background: file(relativePath: {eq: "main.jpg"}) {
+            childImageSharp {
+                fluid(maxWidth: 1920, maxHeight: 1080) { ...GatsbyImageSharpFluid_withWebp }
+            }
+        }
+
+        logo: file(relativePath: {eq: "logo-white.png"}) {
+            childImageSharp { fixed(width: 150) { ...GatsbyImageSharpFixed }}
+        }
+
+        img1: file(relativePath: { eq: "front1.jpg" }) { ...fluidImage }
+        img2: file(relativePath: { eq: "front2.jpg" }) { ...fluidImage }
+        img3: file(relativePath: { eq: "front3.jpg" }) { ...fluidImage }
+    }
+`
+
+const SocialMediaContainer = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2rem 0;
+`
+
+const SegmentContainer = styled.div.attrs({
+    className: "columns is-centered",
+})`
+    margin-bottom: 2rem;
+    justify-content: space-evenly!important;
+
+    &:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+`
+
+const SegmentContent = styled.div.attrs({
+    className: "column is-4",
+})`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`
+
+const SegmentHeading = styled.h2.attrs({
+    className: "is-size-4",
+})`
+    margin-bottom: 1rem;
+`
+
+const SegmentImage = styled.div.attrs({
+    className: "column is-4",
+})`
+    > * {
+        border-radius: 6px;
+    }
+`
+
+const BoldPar = styled.p`font-weight: bold;`
+const PaddedSection = styled.section.attrs({
+    className: "section container",
+})`
+    margin-top: 4rem;
 `
 
 const sections = [
@@ -26,20 +83,29 @@ const sections = [
         image: "img1",
         content: (
             <React.Fragment>
-                <h2 className="is-size-4" style={{ marginBottom: "1rem" }}>Social Media</h2>
+                <SegmentHeading>Social Media</SegmentHeading>
+
                 <p>
                     Folgen Sie mir auf meinen Social Media-Kanälen für regelmäßige Updates und jede Menge Informatives rund um die Themen Gender und Sexualität. 
                 </p>
-                <div style={{
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    margin: "2rem 0",
-                }}>
-                    <a href="https://twitter.com/queerdenkende"><i className="fab fa-3x fa-twitter" /></a>
-                    <a href="https://twitter.com/queerdenkende"><i className="fab fa-3x fa-facebook-square" /></a>
-                    <a href="https://www.facebook.com/Queerdenken/"><i className="fab fa-3x fa-linkedin" /></a>
-                    <a href="https://www.instagram.com/queerdenken.de/"><i className="fab fa-3x fa-instagram" /></a>
-                </div>
+
+                <SocialMediaContainer>
+                    <a href="https://twitter.com/queerdenkende">
+                        <FaTwitter size="3em" />
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/julia-wirth/">
+                        <FaLinkedin size="3em" />
+                    </a>
+
+                    <a href="https://www.facebook.com/Queerdenken/">
+                        <FaFacebookSquare size="3em" />
+                    </a>
+
+                    <a href="https://www.instagram.com/queerdenken.de/">
+                        <FaInstagram size="3em" />
+                    </a>
+                </SocialMediaContainer>
             </React.Fragment>
         ),
     },
@@ -47,7 +113,7 @@ const sections = [
         image: "img2",
         content: (
             <React.Fragment>
-                <h2 className="is-size-4" style={{ marginBottom: "1rem" }}>Andere Initiativen und Projekte</h2>
+                <SegmentHeading>Andere Initiativen und Projekte</SegmentHeading>
                 <p>
                     Sie sind ebenfalls in der Bildungs- und Antidiskriminierungsarbeit zum Thema Gender beschäftigt? Diese Website soll langfristig ein Informationsportal werden, das Initiativen, Projekte und Vereine dieser Art in Hessen zusammenträgt und an einer Stelle auffindbar macht.
                 </p>
@@ -59,9 +125,9 @@ const sections = [
         content: (
             <React.Fragment>
                 <p>
-                    Falls Sie also Interesse haben sich nicht nur mit mir auszutauschen, sondern auch auf dieser Website zu erscheinen, dann melden Sie sich bitte jederzeit. Egal ob Mädchenarbeit, Gewaltprävention, Bildung und Aufklärung -
+                    Falls Sie also Interesse haben sich nicht nur mit mir auszutauschen, sondern auch auf dieser Website zu erscheinen, dann melden Sie sich bitte jederzeit. Egal ob Mädchenarbeit, Gewaltprävention, Bildung und Aufklärung&nbsp;-
                 </p>
-                <p><strong>ich bin gespannt von Ihnen zu hören!</strong></p>
+                <BoldPar>ich bin gespannt von Ihnen zu hören!</BoldPar>
             </React.Fragment>
         ),
     },
@@ -88,22 +154,14 @@ export default class IndexPage extends React.Component {
     }
 
     render() {
+        const background = this.props.data.background.childImageSharp.fluid
+        const logo = this.props.data.logo.childImageSharp.fixed
+
         return (
             <div className="main">
-                <Helmet>
-                    <meta charSet="utf-8" />
-                    <title>Queerdenken</title>
-                    
-                    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-                    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-                    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-                    <link rel="manifest" href="/site.webmanifest" />
-                    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-                    <meta name="msapplication-TileColor" content="#da532c" />
-                    <meta name="theme-color" content="#ffffff" />
-                </Helmet>
+                <Meta title="Queerdenken" />
+                <Navbar activeKey="none" active={this.state.scrolled} />
 
-                <Header activeKey="none" active={this.state.scrolled} />
                 <i
                     className="fas fa-3x fa-chevron-down"
                     style={{
@@ -115,9 +173,40 @@ export default class IndexPage extends React.Component {
                         top: "calc(100vh - 6rem)",
                     }}
                 />
-                <MainHero />
 
-                <section className="section container" style={{ marginTop: "4rem" }}>
+                <header
+                    className="hero is-fullheight is-primary main-hero"
+                    style={{ position: "relative", overflow: "hidden" }}
+                >
+                    <Img
+                        style={{
+                            position: "absolute",
+                            zIndex: 1,
+                            minWidth: "100%",
+                            minHeight: "100vh",
+                        }}
+                        fluid={background}
+                        alt="background"
+                    />
+                    <div className="hero-body" style={{ zIndex: 2 }}>
+                        <div className="container has-text-centered">
+                            <Img
+                                fixed={logo}
+                                alt="logo"
+                            />
+                            <h1 style={{
+                                fontWeight: "bold",
+                                fontFamily: "Amatic SC, cursive",
+                            }}>
+                                qu
+                                <span style={{ color: "#CA2131" }}>e</span>
+                                erdenken
+                            </h1>
+                        </div>
+                    </div>
+                </header>
+
+                <PaddedSection>
                     <div className="columns is-centered is-size-4">
                         <div className="column is-10">
                             <p style={{ marginBottom: "2rem" }}><strong>
@@ -132,35 +221,18 @@ export default class IndexPage extends React.Component {
                             </p>
                         </div>
                     </div>
-                </section>
+                </PaddedSection>
 
                 <section className="section container">
                     {sections.map((it, index) => {
                         const imageData = this.props.data[it.image].childImageSharp.fluid
                         return (
-                            <div
-                                className="columns is-centered"
-                                style={{
-                                    flexDirection: index % 2 === 0 ? "row" : "row-reverse",
-                                    marginBottom: "2rem",
-                                    justifyContent: "space-evenly",
-                                }}
-                                key={index}
-                            >
-                                <div
-                                    className="column is-4"
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "center",
-                                    }}
-                                >
-                                    {it.content}
-                                </div>
-                                <div className="column is-4">
-                                    <Img fluid={imageData} style={{ borderRadius: "6px" }} alt="some" />
-                                </div>
-                            </div>
+                            <SegmentContainer key={index}>
+                                <SegmentContent>{it.content}</SegmentContent>
+                                <SegmentImage>
+                                    <Img fluid={imageData} alt="some"/>
+                                </SegmentImage>
+                            </SegmentContainer>
                         )
                     })}
                 </section>

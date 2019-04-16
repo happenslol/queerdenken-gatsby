@@ -1,7 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
-import Header from "../components/header"
+import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import Hero from "../components/hero"
 import Sec from "../components/section"
@@ -33,7 +33,7 @@ export default ({ data }) => (
             <meta name="theme-color" content="#ffffff" />
         </Helmet>
 
-        <Header active={true} activeKey={key} />
+        <Navbar active={true} activeKey={key} />
         <Hero title={key} imageData={data.background.childImageSharp.fluid} />
 
         <Sec>

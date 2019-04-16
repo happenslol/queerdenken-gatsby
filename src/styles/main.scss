@@ -64,29 +64,3 @@ footer {
 footer {
     margin-top: auto;
 }
-
-.fancy-link {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    
-    &::after {
-        display: block;
-        content: ' ';
-        position: absolute;
-        height: .3em;
-        width: 0;
-        background-color: $primary;
-        border-radius: 4px;
-        bottom: -6px;
-        
-        transition: width .2s ease-in-out;
-    }
-    
-    &:hover, &:active, &.active {
-        &::after {
-            width: 60%;
-        }
-    }
-}
-

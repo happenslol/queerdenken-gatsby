@@ -23,6 +23,10 @@ module.exports = {
                 trackingId: "UA-124189525-2",
             },
         },
+        {
+            resolve: `gatsby-plugin-styled-components`,
+            options: {},
+        },
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-react-helmet`,
