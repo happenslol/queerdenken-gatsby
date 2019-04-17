@@ -1,4 +1,5 @@
 const path = require(`path`)
+require("dotenv").config({ path: `.env` })
 
 module.exports = {
     plugins: [
@@ -20,7 +21,15 @@ module.exports = {
         {
             resolve: `gatsby-plugin-google-analytics`,
             options: {
-                trackingId: "UA-124189525-2",
+                trackingId: `${process.env.ANALYTICS_KEY}`,
+            },
+        },
+        {
+            resolve: `gatsby-source-prismic`,
+            options: {
+                repositoryName: `queerdenken`,
+                accessToken: `${process.env.PRISMIC_API_KEY}`,
+                linkResolver: ({ node }) => `/${node.id}`,
             },
         },
         {

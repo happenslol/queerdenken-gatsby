@@ -1,5 +1,4 @@
 import React from "react"
-import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
@@ -7,6 +6,7 @@ import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import Hero from "../components/hero"
 import { Section, Hr } from "../components/common"
+import Meta from "../components/meta"
 
 export const key = "Workshops"
 export const query = graphql`

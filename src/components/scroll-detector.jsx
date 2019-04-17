@@ -15,5 +15,5 @@ export default class ScrollDetector extends React.Component {
 
     componentDidMount() { window.addEventListener("scroll", this.onScroll) }
     componentWillUnmount() { window.removeEventListener("scroll", this.onScroll) }
-    render() { this.props.render(this.state.scrolled) }
+    render() { return this.props.render(this.state.scrolled) }
 }
