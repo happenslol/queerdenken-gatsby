@@ -6,6 +6,7 @@ import styled from "styled-components"
 import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import Meta from "../components/meta"
+import ScrollDetector from "../components/scroll-detector"
 
 import { FaTwitter, FaInstagram, FaFacebookSquare, FaLinkedin } from "react-icons/fa"
 
@@ -133,113 +134,93 @@ const sections = [
     },
 ]
 
-export default class IndexPage extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { scrolled: false }
-    }
+export default props => {
+    const background = props.data.background.childImageSharp.fluid
+    const logo = props.data.logo.childImageSharp.fixed
 
-    onScroll = () => {
-        if (window.scrollY > 0 && !this.state.scrolled)
-            this.setState({ scrolled: true })
-        else if (window.scrollY === 0 && this.state.scrolled)
-            this.setState({ scrolled: false })
-    }
+    return (
+        <div className="main">
+            <Meta title="Queerdenken" />
+            <ScrollDetector render={scrolled => (
+                <Navbar activeKey="none" active={scrolled} />
+            )} />
 
-    componentDidMount() {
-        window.addEventListener('scroll', this.onScroll)
-    }
+            <i
+                className="fas fa-3x fa-chevron-down"
+                style={{
+                    position: "absolute",
+                    zIndex: 3,
+                    color: "white",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    top: "calc(100vh - 6rem)",
+                }}
+            />
 
-    componentWillUnmount() {
-        window.removeEventListener("scroll", this.onScroll)
-    }
-
-    render() {
-        const background = this.props.data.background.childImageSharp.fluid
-        const logo = this.props.data.logo.childImageSharp.fixed
-
-        return (
-            <div className="main">
-                <Meta title="Queerdenken" />
-                <Navbar activeKey="none" active={this.state.scrolled} />
-
-                <i
-                    className="fas fa-3x fa-chevron-down"
+            <header
+                className="hero is-fullheight is-primary main-hero"
+                style={{ position: "relative", overflow: "hidden" }}
+            >
+                <Img
                     style={{
                         position: "absolute",
-                        zIndex: 3,
-                        color: "white",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        top: "calc(100vh - 6rem)",
+                        zIndex: 1,
+                        minWidth: "100%",
+                        minHeight: "100vh",
                     }}
+                    fluid={background}
+                    alt="background"
                 />
-
-                <header
-                    className="hero is-fullheight is-primary main-hero"
-                    style={{ position: "relative", overflow: "hidden" }}
-                >
-                    <Img
-                        style={{
-                            position: "absolute",
-                            zIndex: 1,
-                            minWidth: "100%",
-                            minHeight: "100vh",
-                        }}
-                        fluid={background}
-                        alt="background"
-                    />
-                    <div className="hero-body" style={{ zIndex: 2 }}>
-                        <div className="container has-text-centered">
-                            <Img
-                                fixed={logo}
-                                alt="logo"
-                            />
-                            <h1 style={{
-                                fontWeight: "bold",
-                                fontFamily: "Amatic SC, cursive",
-                            }}>
-                                qu
-                                <span style={{ color: "#CA2131" }}>e</span>
-                                erdenken
-                            </h1>
-                        </div>
+                <div className="hero-body" style={{ zIndex: 2 }}>
+                    <div className="container has-text-centered">
+                        <Img
+                            fixed={logo}
+                            alt="logo"
+                        />
+                        <h1 style={{
+                            fontWeight: "bold",
+                            fontFamily: "Amatic SC, cursive",
+                        }}>
+                            qu
+                            <span style={{ color: "#CA2131" }}>e</span>
+                            erdenken
+                        </h1>
                     </div>
-                </header>
+                </div>
+            </header>
 
-                <PaddedSection>
-                    <div className="columns is-centered is-size-4">
-                        <div className="column is-10">
-                            <p style={{ marginBottom: "2rem" }}><strong>
-                                Queerdenken ist ein Bildungs- und Aufklärungsprojekt, das zur kritischen Reflexion über gesellschaftlich normierte und normalisierte Geschlechterrollen befähigen will.
-                            </strong></p> 
-                            <p>
-                                Zu diesem Thema biete ich Workshops, Fortbildungen und Vorträge sowohl für Schulklassen und Jugendgruppen als auch für Lehrkräfte im weitesten Sinne an - also alle Personen, die mit der (Aus-)Bildung und Betreuung von anderen Personen beschäftigt sind. Im Zentrum der Veranstaltungen steht eine alltagsnahe und übertragbare Vermittlung von Wissen und Kompetenzen zu den Wirkungsweisen von Geschlecht in unserem Leben, die für die Vielfalt von Geschlechtsentwürfen und -identitäten sensibilisieren und damit aktiv Vorurteile und Diskriminierung bekämpfen soll.
-                            </p>
+            <PaddedSection>
+                <div className="columns is-centered is-size-4">
+                    <div className="column is-10">
+                        <p style={{ marginBottom: "2rem" }}><strong>
+                            Queerdenken ist ein Bildungs- und Aufklärungsprojekt, das zur kritischen Reflexion über gesellschaftlich normierte und normalisierte Geschlechterrollen befähigen will.
+                        </strong></p> 
+                        <p>
+                            Zu diesem Thema biete ich Workshops, Fortbildungen und Vorträge sowohl für Schulklassen und Jugendgruppen als auch für Lehrkräfte im weitesten Sinne an - also alle Personen, die mit der (Aus-)Bildung und Betreuung von anderen Personen beschäftigt sind. Im Zentrum der Veranstaltungen steht eine alltagsnahe und übertragbare Vermittlung von Wissen und Kompetenzen zu den Wirkungsweisen von Geschlecht in unserem Leben, die für die Vielfalt von Geschlechtsentwürfen und -identitäten sensibilisieren und damit aktiv Vorurteile und Diskriminierung bekämpfen soll.
+                        </p>
 
-                            <p style={{ marginTop: "2rem" }}>
-                                Erfahren Sie auf dieser Seite alles zum Projekt, zu den Angeboten und meiner Person.
-                            </p>
-                        </div>
+                        <p style={{ marginTop: "2rem" }}>
+                            Erfahren Sie auf dieser Seite alles zum Projekt, zu den Angeboten und meiner Person.
+                        </p>
                     </div>
-                </PaddedSection>
+                </div>
+            </PaddedSection>
 
-                <section className="section container">
-                    {sections.map((it, index) => {
-                        const imageData = this.props.data[it.image].childImageSharp.fluid
-                        return (
-                            <SegmentContainer key={index}>
-                                <SegmentContent>{it.content}</SegmentContent>
-                                <SegmentImage>
-                                    <Img fluid={imageData} alt="some"/>
-                                </SegmentImage>
-                            </SegmentContainer>
-                        )
-                    })}
-                </section>
+            <section className="section container">
+                {sections.map((it, index) => {
+                    const imageData = props.data[it.image].childImageSharp.fluid
+                    return (
+                        <SegmentContainer key={index}>
+                            <SegmentContent>{it.content}</SegmentContent>
+                            <SegmentImage>
+                                <Img fluid={imageData} alt="some"/>
+                            </SegmentImage>
+                        </SegmentContainer>
+                    )
+                })}
+            </section>
 
-                <Footer />
-            </div>
-        )
-    }
+            <Footer />
+        </div>
+    )
 }
