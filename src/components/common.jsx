@@ -29,3 +29,7 @@ export const colors = {
     accent: "#CA2131",
     link: "#D4CEFD",
 }
+
+export const Content = ({ html }) => (
+    <div className="content" dangerouslySetInnerHTML={{ __html: html }} />
+)

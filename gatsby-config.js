@@ -29,7 +29,7 @@ module.exports = {
             options: {
                 repositoryName: `queerdenken`,
                 accessToken: `${process.env.PRISMIC_API_KEY}`,
-                linkResolver: ({ node }) => `/${node.id}`,
+                linkResolver: ({ node, key, value }) => doc => `/${doc.id}`,
             },
         },
         {
