@@ -26,7 +26,7 @@ export default function Navbar(props) {
                 <LinksWrapper toggled={opened}>
                     {pages.map(([url, link]) => (
                         <NavLink
-                            to={url}
+                            to={`/${url}`}
                             key={url}
                             active={props.url === url}
                             dark={props.active}
@@ -128,6 +128,7 @@ const LogoWrapper = styled(Link)`
     align-items: center;
     opacity: 0;
     color: #111;
+    cursor: default;
 
     transition: all .25s ease-in-out;
     transition-property: opacity margin;
@@ -145,6 +146,7 @@ const LogoWrapper = styled(Link)`
     }
 
     ${props => props.active && css`
+        cursor: pointer;
         opacity: 1;
         margin-top: -.4rem;
     `}
@@ -163,7 +165,10 @@ const Toggle = styled.div`
     align-content: center;
     padding: 1.5rem 1.5rem 0 0;
 
-    ${mobile`display: flex;`}
+    ${mobile`
+        display: flex;
+    `}
+
     ${props => props.active && css`
         color: #111;
     `}
@@ -231,11 +236,12 @@ const NavLink = styled(Link)`
         width: 0;
         background-color: ${colors.primary};
         border-radius: 4px;
-
         bottom: 1em;
-        ${mobile`bottom: 0;`}
-
         transition: width .2s ease-in-out;
+
+        ${mobile`
+            bottom: 0;
+        `}
     }
 
     ${props => props.active && css`

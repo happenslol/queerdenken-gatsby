@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Navbar from "../components/navbar"
 import Footer from "../components/footer"
-import Hero from "../components/hero"
+import { Hero } from "../components/hero"
 import { Section, Hr } from "../components/common"
 import Meta from "../components/meta"
 

@@ -1,6 +1,6 @@
 import React from "react"
 import Img from "gatsby-image"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 const Wrapper = styled.header.attrs({ className: "hero is-primary" })`
     margin-top: 5rem;
@@ -8,22 +8,62 @@ const Wrapper = styled.header.attrs({ className: "hero is-primary" })`
     overflow: hidden;
 `
 
-const Title = styled.div.attrs({ className: "hero-body" })`z-index: 2;`
-const Logo = styled(Img)`
-    padding-top: 5rem;
+const Body = styled.div`
+    position: absolute;
+    z-index: 3;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const Overlay = styled.div`
+    position: absolute;
+    z-index: 2;
+    width: 100vw;
+    height: 100%;
+
+    background-color: #000;
+    opacity: .5;
+`
+
+const Background = styled(Img)`
     position: absolute;
     z-index: 1;
     min-height: 100%;
     width: 100vw;
+
+    ${props => props.padded && css`
+        padding-top: 5rem;
+    `}
 `
 
-export default props => (
+export const Hero = props => (
     <Wrapper>
-        <Logo fluid={props.imageData} alt="header" />
-        <Title>
-            <div className="container has-text-centered is-size-2">
+        <Background fluid={props.imageData} alt="header" padded={true}/>
+        <Body>
+            <div className="has-text-centered is-size-2">
                 <h1 className="has-text-weight-semibold">{props.title}</h1>
             </div>
-        </Title>
+        </Body>
+        <Overlay />
     </Wrapper>
+)
+
+const FullsizeWrapper = styled.header.attrs({ className: "hero is-fullheight is-primary" })`
+    position: relative;
+    overflow: hidden;
+`
+
+export const FullsizeHero = props => (
+    <FullsizeWrapper>
+        <Background fluid={props.imageData} alt="header" padded={false} />
+        <Body>
+            <div className="has-text-centered">
+                {props.children}
+            </div>
+        </Body>
+        <Overlay />
+    </FullsizeWrapper>
 )

@@ -4,14 +4,14 @@ import Img from "gatsby-image"
 
 import Navbar from "../components/navbar"
 import Footer from "../components/footer"
-import Hero from "../components/hero"
 import Meta from "../components/meta"
+import { Hero } from "../components/hero"
 import { Content } from "../components/common"
 
 export default ({ data: { prismicWorkshops: { uid, data }}}) => (
     <div className="main">
         <Meta title={`${data.page_title.text} | Queerdenken`} />
-        <Navbar active={true} activeKey={uid} />
+        <Navbar active={true} url={uid} />
         <Hero
             title={data.title.text}
             imageData={data.hero_image.localFile.childImageSharp.fluid}
