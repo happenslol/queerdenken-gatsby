@@ -1,46 +1,102 @@
 import React, { useState } from "react"
 import { graphql, StaticQuery, Link } from "gatsby"
 import styled, { css } from "styled-components"
-import { mobile, colors } from "./common"
 import Img from "gatsby-image"
 import { FaBars } from "react-icons/fa"
-
-const pages = [
-    { url: "/", key: "Home" },
-    { url: "/workshops", key: "Workshops" },
-    { url: "/about", key: "Über Mich" },
-    { url: "/contact", key: "Kontakt" },
-]
+import { mobile, colors } from "./common"
 
 export default function Navbar(props) {
     const [opened, setOpened] = useState(false)
 
     return (
-        <Nav active={props.active || opened}>
-            <Logo active={props.active} />
+        <NavData render={({ logoData, pages }) => (
+            <Nav active={props.active || opened}>
+                <LogoWrapper to="/" active={props.active}>
+                    <Img fixed={logoData} alt="queerdenken logo" />
+                    <h1>qu<span>e</span>erdenken</h1>
+                </LogoWrapper>
 
-            <Toggle
-                onClick={() => setOpened(!opened)}
-                active={props.active || opened}
-            >
-                <FaBars size="2.5em" />
-            </Toggle>
+                <Toggle
+                    onClick={() => setOpened(!opened)}
+                    active={props.active || opened}
+                >
+                    <FaBars size="2.5em" />
+                </Toggle>
 
-            <LinksWrapper toggled={opened}>
-                {pages.map((it, index) => (
-                    <NavLink
-                        to={it.url}
-                        key={index}
-                        active={props.activeKey === it.key}
-                        dark={props.active}
-                    >
-                        {it.key}
-                    </NavLink>
-                ))}
-            </LinksWrapper>
-        </Nav>
+                <LinksWrapper toggled={opened}>
+                    {pages.map(([url, link]) => (
+                        <NavLink
+                            to={url}
+                            key={url}
+                            active={props.url === url}
+                            dark={props.active}
+                        >
+                            {link}
+                        </NavLink>
+                    ))}
+                </LinksWrapper>
+            </Nav>
+        )} />
     )
 }
+
+const query = graphql`
+    query {
+        logo: file(relativePath: {eq: "logo-color-small.png"}) {
+            childImageSharp {
+                fixed(height: 48, width: 41) { ...GatsbyImageSharpFixed }
+            }
+        }
+        prismicHome {
+            data {
+                link_title {
+                    text
+                }
+            }
+        }
+        prismicWorkshops {
+            uid
+            data {
+                link_title {
+                    text
+                }
+            }
+        }
+        prismicAbout {
+            uid
+            data {
+                link_title {
+                    text
+                }
+            }
+        }
+        prismicContact {
+            uid
+            data {
+                link_title {
+                    text
+                }
+            }
+        }
+    }
+`
+
+const NavData = ({ render }) => (
+    <StaticQuery
+        query={query}
+        render={data => {
+            const logoData = data.logo.childImageSharp.fixed
+            const pages = [
+                data.prismicHome,
+                data.prismicWorkshops,
+                data.prismicAbout,
+                data.prismicContact,
+            ].map(it => [it.uid || ``, it.data.link_title.text])
+
+            return render({ logoData, pages })
+        }}
+    />
+)
 
 const navbarHeight = "5rem"
 const Nav = styled.nav`
@@ -49,15 +105,15 @@ const Nav = styled.nav`
     left: 0;
     right: 0;
     z-index: 10;
-    
+
     display: flex;
-    
+
     height: ${navbarHeight};
     background-color: rgba(0, 0, 0, 0);
-    
+
     justify-content: space-between;
     padding: 0 1.5rem;
-    
+
     transition: all .25s ease-in-out;
     transition-property: background-color, color, box-shadow;
 
@@ -72,7 +128,7 @@ const LogoWrapper = styled(Link)`
     align-items: center;
     opacity: 0;
     color: #111;
-    
+
     transition: all .25s ease-in-out;
     transition-property: opacity margin;
 
@@ -82,7 +138,7 @@ const LogoWrapper = styled(Link)`
         font-weight: bold;
         font-family: 'Amatic SC', cursive;
         margin-left: .8rem;
-        
+
         span {
             color: ${colors.accent};
         }
@@ -93,26 +149,6 @@ const LogoWrapper = styled(Link)`
         margin-top: -.4rem;
     `}
 `
-
-const Logo = ({ active }) => (
-    <StaticQuery
-        query={graphql`
-        query {
-            logo: file(relativePath: {eq: "logo-color-small.png"}) {
-                childImageSharp {
-                    fixed(height: 48, width: 41) { ...GatsbyImageSharpFixed }
-                }
-            }
-        }
-        `}
-        render={({ logo }) => (
-            <LogoWrapper to="/" active={active}>
-                <Img fixed={logo.childImageSharp.fixed} alt="queerdenken logo" />
-                <h1>qu<span>e</span>erdenken</h1>
-            </LogoWrapper>
-        )}
-    />
-)
 
 const Toggle = styled.div`
     display: none;
@@ -137,11 +173,11 @@ const LinksWrapper = styled.div`
     height: 100%;
     display: none;
     font-size: 1.1rem;
-    
+
     align-items: center;
     display: flex;
     white-space: nowrap;
-    
+
     ${mobile`
         display: none;
         position: fixed;
@@ -198,7 +234,7 @@ const NavLink = styled(Link)`
 
         bottom: 1em;
         ${mobile`bottom: 0;`}
-        
+
         transition: width .2s ease-in-out;
     }
 
@@ -206,3 +242,4 @@ const NavLink = styled(Link)`
         &::after { width: 60%; }
     `}
 `
+

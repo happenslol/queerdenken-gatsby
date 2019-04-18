@@ -142,7 +142,7 @@ export default props => {
         <div className="main">
             <Meta title="Queerdenken" />
             <ScrollDetector render={scrolled => (
-                <Navbar activeKey="none" active={scrolled} />
+                <Navbar active={scrolled} />
             )} />
 
             <i
