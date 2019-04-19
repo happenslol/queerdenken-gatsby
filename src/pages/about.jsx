@@ -7,59 +7,51 @@ import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import Meta from "../components/meta"
 import { Hero } from "../components/hero"
-import { Content, mobile } from "../components/common"
+import { ContentTube, Page, Content, mobile } from "../components/common"
 
 export default ({ data: { prismicAbout: { uid, data }}}) => (
-    <div className="main">
-        <Meta title={`${data.page_title.text} | Queerdenken`} />
+    <Page>
+        <Meta title={`${data.page_title.text} • Queerdenken`} />
         <Navbar active={true} url={uid} />
         <Hero
             title={data.title.text}
             imageData={data.hero_image.localFile.childImageSharp.fluid}
         />
 
-        <section className="section container">
-            <div className="columns">
-                <MeImage className="column is-4">
-                    <Img fixed={data.me_image.localFile.childImageSharp.fixed} />
-                </MeImage>
+        <ContentTube>
+            <section className="section">
+                <div className="columns">
+                    <MeImage className="column is-4">
+                        <Img fixed={data.me_image.localFile.childImageSharp.fixed} />
+                    </MeImage>
 
-                <div className="column is-8">
-                    <Content html={data.me_text.html} />
+                    <div className="column is-8">
+                        <Content html={data.me_text.html} />
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <div>
-            <section className="section container">
-                <h2 className="is-size-3">{data.resume_title.text}</h2>
             </section>
 
-            {data.resume_sections.map(({ resume_section_title, resume_section_content }) => (
-                <section className="section container">
-                    <h3 className="is-size-4">{resume_section_title.text}</h3>
-                    <Content html={resume_section_content.html} />
+            <div>
+                <section className="section">
+                    <ResumeTitle className="is-size-3">{data.resume_title.text}</ResumeTitle>
                 </section>
-            ))}
-        </div>
 
-        <div>
-        </div>
+                {data.resume_sections.map(({
+                    resume_section_title,
+                    resume_section_content,
+                    section_color,
+                }) => (
+                    <ResumeSection color={section_color}>
+                        <h3 className="is-size-4">{resume_section_title.text}</h3>
+                        <Content html={resume_section_content.html} />
+                    </ResumeSection>
+                ))}
+            </div>
+        </ContentTube>
 
         <Footer />
-    </div>
+    </Page>
 )
-
-const MeImage = styled.div`
-    ${mobile`
-        display: flex;
-        justify-content: center;
-    `}
-
-    img {
-        border-radius: 10px;
-    }
-`
 
 export const query = graphql`
 query {
@@ -103,9 +95,40 @@ query {
         resume_section_content {
           html
         }
+        section_color
       }
     }
   }
 }
 `
 
+const MeImage = styled.div`
+    ${mobile`
+        display: flex;
+        justify-content: center;
+    `}
+
+    img {
+        border-radius: 10px;
+    }
+`
+
+const ResumeTitle = styled.h2`
+    margin-bottom: -3rem;
+`
+
+const ResumeSection = styled.section.attrs({ className: "section" })`
+    padding-left: 5rem;
+    position: relative;
+
+    &::before {
+        content: " ";
+        position: absolute;
+        display: block;
+        height: calc(100% - 5rem);
+        background-color: ${props => props.color};
+        width: 6px;
+        border-radius: 10px;
+        left: 1.5rem;
+    }
+`

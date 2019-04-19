@@ -1,7 +1,8 @@
 import React from "react"
+import styled from "styled-components"
 
-export default () => (
-    <footer className="footer">
+const FooterBase = ({ className }) => (
+    <footer className={`footer ${className}`}>
         <div className="content has-text-centered">
             <p>
                 &copy; 2019 Julia Wirth, Queerdenken<br />
@@ -15,3 +16,8 @@ export default () => (
         </div>
     </footer>
 )
+
+export default styled(FooterBase)`
+    margin-top: auto;
+    width: 100vw;
+`

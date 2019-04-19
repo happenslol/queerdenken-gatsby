@@ -8,7 +8,7 @@ import Footer from "../components/footer"
 import Meta from "../components/meta"
 import ScrollDetector from "../components/scroll-detector"
 import { FullsizeHero } from "../components/hero"
-import { Content, colors, mobile } from "../components/common"
+import { Page, ContentTube, Content, Separator, colors, mobile } from "../components/common"
 
 import {
     FaTwitter,
@@ -19,7 +19,7 @@ import {
 } from "react-icons/fa"
 
 export default ({ data: { logo, prismicHome: { data }}}) => (
-    <div className="main">
+    <Page>
         <Meta title="Queerdenken" />
         <ScrollDetector render={scrolled => <Navbar active={scrolled} />} />
         
@@ -32,31 +32,47 @@ export default ({ data: { logo, prismicHome: { data }}}) => (
             </LogoSubtitle>
         </FullsizeHero>
 
-        <section className="section container">
-            <Content html={data.intro_text.html} />
-        </section>
+        <ContentTube>
+            <Intro>
+                <Content html={data.intro_text.html} />
+            </Intro>
 
-        <section className="section container">
-        </section>
+            <Separator />
 
-        <div>
-            {data.sections.map(({ section_image, section_content }) => (
-                <Section>
-                    <div className="columns">
-                        <div className="column is-half">
-                            <Img fluid={section_image.localFile.childImageSharp.fluid} />
+            <Socials>
+                <a href="https://twitter.com/queerdenkende">
+                    <FaTwitter size="3em" />
+                </a>
+                <a href="https://www.instagram.com/queerdenken.de/">
+                    <FaInstagram size="3em" />
+                </a>
+                <a href="https://www.facebook.com/Queerdenken/">
+                    <FaFacebookSquare size="3em" />
+                </a>
+                <a href="https://www.linkedin.com/in/julia-wirth/">
+                    <FaLinkedin size="3em" />
+                </a>
+            </Socials>
+
+            <div>
+                {data.sections.map(({ section_image, section_content }) => (
+                    <Section>
+                        <div className="columns">
+                            <div className="column is-half">
+                                <Img fluid={section_image.localFile.childImageSharp.fluid} />
+                            </div>
+
+                            <div className="column is-half">
+                                <Content html={section_content.html} />
+                            </div>
                         </div>
-
-                        <div className="column is-half">
-                            <Content html={section_content.html} />
-                        </div>
-                    </div>
-                </Section>
-            ))}
-        </div>
+                    </Section>
+                ))}
+            </div>
+        </ContentTube>
 
         <Footer />
-    </div>
+    </Page>
 )
 
 export const query = graphql`
@@ -121,8 +137,40 @@ const LogoSubtitle = styled.h1`
     `}
 `
 
-const Section = styled.div.attrs({ className: "section container" })`
-    &:nth-child(even) > .columns {
+const Intro = styled.section.attrs({ className: "section" })`
+    font-size: 1.4rem;
+`
+
+const Socials = styled.section.attrs({ className: "section" })`
+    display: flex;
+    justify-content: space-evenly;
+
+    a {
+        color: ${colors.primary};
+        transition: color .1s ease-in-out;
+
+        &:hover {
+            color: #313131;
+        }
+    }
+`
+
+const Section = styled.div.attrs({ className: "section" })`
+    .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .content {
+        padding: 0 3em;
+    }
+
+    img {
+        border-radius: 10px;
+    }
+
+    &:nth-child(odd) > .columns {
         flex-direction: row-reverse;
     }
 `

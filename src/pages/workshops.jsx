@@ -1,40 +1,45 @@
 import React from "react"
 import { graphql } from "gatsby"
+import styled from "styled-components"
 import Img from "gatsby-image"
 
 import Navbar from "../components/navbar"
 import Footer from "../components/footer"
 import Meta from "../components/meta"
 import { Hero } from "../components/hero"
-import { Content } from "../components/common"
+import { ContentTube, Separator, Page, Content } from "../components/common"
 
 export default ({ data: { prismicWorkshops: { uid, data }}}) => (
-    <div className="main">
-        <Meta title={`${data.page_title.text} | Queerdenken`} />
+    <Page>
+        <Meta title={`${data.page_title.text} • Queerdenken`} />
         <Navbar active={true} url={uid} />
         <Hero
             title={data.title.text}
             imageData={data.hero_image.localFile.childImageSharp.fluid}
         />
     
-        <section className="section container">
-            <Content html={data.intro.html} />
-        </section>
+        <ContentTube>
+            <Intro>
+                <Content html={data.intro.html} />
+            </Intro>
 
-        {data.sections.map(({ section_image, section_title, section_content }) => (
-            <section className="section container">
-                <h3>{section_title.text}</h3>
-                <Img fluid={section_image.localFile.childImageSharp.fluid} />
-                <Content html={section_content.html} />
+            <Separator />
+
+            {data.sections.map(({ section_image, section_title, section_content }) => (
+                <section className="section">
+                    <h3 className="is-size-3">{section_title.text}</h3>
+                    <SectionImg fluid={section_image.localFile.childImageSharp.fluid} />
+                    <Content html={section_content.html} />
+                </section>
+            ))}
+
+            <section className="section">
+                <Content html={data.call_to_action.html} />
             </section>
-        ))}
-
-        <section className="section container">
-            <Content html={data.call_to_action.html} />
-        </section>
+        </ContentTube>
     
         <Footer />
-    </div>
+    </Page>
 )
 
 export const query = graphql`
@@ -86,4 +91,12 @@ query {
         }
     }
 }
+`
+
+const SectionImg = styled(Img)`
+    margin: 2rem 0;
+`
+
+const Intro = styled.section.attrs({ className: "section" })`
+    font-size: 1.4em;
 `

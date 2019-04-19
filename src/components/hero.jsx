@@ -3,9 +3,9 @@ import Img from "gatsby-image"
 import styled, { css } from "styled-components"
 
 const Wrapper = styled.header.attrs({ className: "hero is-primary" })`
-    margin-top: 5rem;
     position: relative;
     overflow: hidden;
+    margin: 5rem 0 4rem 0;
 `
 
 const Body = styled.div`
@@ -54,6 +54,7 @@ export const Hero = props => (
 const FullsizeWrapper = styled.header.attrs({ className: "hero is-fullheight is-primary" })`
     position: relative;
     overflow: hidden;
+    margin-bottom: 4rem;
 `
 
 export const FullsizeHero = props => (
