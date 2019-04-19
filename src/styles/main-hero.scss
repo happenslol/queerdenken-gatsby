@@ -1,9 +1,0 @@
-@import "./mixins";
-
-.main-hero h1 {
-    font-size: 8rem;
-
-    @include respond-to(medium) {
-        font-size: 5rem;
-    }
-}
