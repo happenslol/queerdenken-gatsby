@@ -23,9 +23,27 @@ export const colors = {
     link: "#D4CEFD",
 }
 
-export const Content = ({ html }) => (
-    <div className="content" dangerouslySetInnerHTML={{ __html: html }} />
+const ContentBase = ({ html, className }) => (
+    <div
+        className={`content ${className}`}
+        dangerouslySetInnerHTML={{ __html: html }}
+    />
 )
+
+export const Content = styled(ContentBase)`
+    a {
+        color: #313131;
+
+        background-image: linear-gradient(to right, #D4CEFD 0%, #D4CEFD 100%);
+        background-repeat: repeat-x;
+        background-position: 0 100%;
+        background-size: 100% 8px;
+
+        &:hover {
+            background-image: linear-gradient(to right, #c5bcff 0%, #c5bcff 100%);
+        }
+    }
+`
 
 export const Page = styled.div`
     display: flex;

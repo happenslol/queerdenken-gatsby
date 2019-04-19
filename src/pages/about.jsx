@@ -125,10 +125,11 @@ const ResumeSection = styled.section.attrs({ className: "section" })`
         content: " ";
         position: absolute;
         display: block;
-        height: calc(100% - 5rem);
+        height: calc(100% - 3rem);
         background-color: ${props => props.color};
         width: 6px;
         border-radius: 10px;
         left: 1.5rem;
+        top: 1.5rem;
     }
 `
