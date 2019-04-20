@@ -36,14 +36,6 @@ module.exports = {
             },
         },
         {
-            resolve: 'gatsby-plugin-prismic-preview',
-            options: {
-                repositoryName: prismicRepo,
-                linkResolver: linkResolver,
-                path: '/preview',
-            }
-        },
-        {
             resolve: `gatsby-plugin-styled-components`,
             options: {},
         },
