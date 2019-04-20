@@ -1,6 +1,9 @@
 const path = require(`path`)
 require("dotenv").config({ path: `.env` })
 
+const prismicRepo = "queerdenken"
+const linkResolver = ({ node, key, value }) => doc => `/${doc.uid}`
+
 module.exports = {
     plugins: [
         {
@@ -27,10 +30,18 @@ module.exports = {
         {
             resolve: `gatsby-source-prismic`,
             options: {
-                repositoryName: `queerdenken`,
+                repositoryName: prismicRepo,
                 accessToken: `${process.env.PRISMIC_API_KEY}`,
-                linkResolver: ({ node, key, value }) => doc => `/${doc.id}`,
+                linkResolver: linkResolver,
             },
+        },
+        {
+            resolve: 'gatsby-plugin-prismic-preview',
+            options: {
+                repositoryName: prismicRepo,
+                linkResolver: linkResolver,
+                path: '/preview',
+            }
         },
         {
             resolve: `gatsby-plugin-styled-components`,
