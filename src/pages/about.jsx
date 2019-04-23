@@ -40,8 +40,8 @@ export default ({ data: { prismicAbout: { uid, data }}}) => (
                     resume_section_title,
                     resume_section_content,
                     section_color,
-                }) => (
-                    <ResumeSection color={section_color}>
+                }, index) => (
+                    <ResumeSection color={section_color} key={index}>
                         <h3 className="is-size-4">{resume_section_title.text}</h3>
                         <Content html={resume_section_content.html} />
                     </ResumeSection>

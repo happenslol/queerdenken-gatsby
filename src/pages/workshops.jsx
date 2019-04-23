@@ -25,8 +25,8 @@ export default ({ data: { prismicWorkshops: { uid, data }}}) => (
 
             <Separator />
 
-            {data.sections.map(({ section_image, section_title, section_content }) => (
-                <section className="section">
+            {data.sections.map(({ section_image, section_title, section_content }, index) => (
+                <section className="section" key={index}>
                     <h3 className="is-size-3">{section_title.text}</h3>
                     <SectionImg fluid={section_image.localFile.childImageSharp.fluid} />
                     <Content html={section_content.html} />

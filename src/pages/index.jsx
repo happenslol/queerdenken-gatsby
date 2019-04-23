@@ -55,8 +55,8 @@ export default ({ data: { logo, prismicHome: { data }}}) => (
             </Socials>
 
             <div>
-                {data.sections.map(({ section_image, section_content }) => (
-                    <Section>
+                {data.sections.map(({ section_image, section_content }, index) => (
+                    <Section key={index}>
                         <div className="columns">
                             <div className="column is-half">
                                 <Img fluid={section_image.localFile.childImageSharp.fluid} />

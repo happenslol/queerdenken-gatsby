@@ -55,6 +55,10 @@ const FullsizeWrapper = styled.header.attrs({ className: "hero is-fullheight is-
     position: relative;
     overflow: hidden;
     margin-bottom: 4rem;
+
+    > div {
+        height: 100vh;
+    }
 `
 
 export const FullsizeHero = props => (

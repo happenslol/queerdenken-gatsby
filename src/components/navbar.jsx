@@ -10,26 +10,26 @@ export default function Navbar(props) {
 
     return (
         <NavData render={({ logoData, pages }) => (
-            <Nav active={props.active || opened}>
-                <LogoWrapper to="/" active={props.active}>
+            <Nav isActive={props.active || opened}>
+                <LogoWrapper to="/" isActive={props.active || opened}>
                     <Img fixed={logoData} alt="queerdenken logo" />
                     <h1>qu<span>e</span>erdenken</h1>
                 </LogoWrapper>
 
                 <Toggle
                     onClick={() => setOpened(!opened)}
-                    active={props.active || opened}
+                    isActive={props.active || opened}
                 >
                     <FaBars size="2.5em" />
                 </Toggle>
 
-                <LinksWrapper toggled={opened}>
+                <LinksWrapper isToggled={opened}>
                     {pages.map(([url, link]) => (
                         <NavLink
                             to={`/${url}`}
                             key={url}
-                            active={props.url === url}
-                            dark={props.active}
+                            isActive={props.url === url}
+                            isDark={props.active}
                         >
                             {link}
                         </NavLink>
@@ -99,7 +99,7 @@ const NavData = ({ render }) => (
 )
 
 const navbarHeight = "5rem"
-const Nav = styled.nav`
+const Nav = styled(({ isActive, ...props }) => <nav {...props} />)`
     position: fixed;
     top: 0;
     left: 0;
@@ -117,13 +117,13 @@ const Nav = styled.nav`
     transition: all .25s ease-in-out;
     transition-property: background-color, color, box-shadow;
 
-    ${props => props.active && css`
+    ${props => props.isActive && css`
         background-color: #FFF;
         box-shadow: 0 2px 2px 1px rgba(0, 0, 0, .18);
     `}
 `
 
-const LogoWrapper = styled(Link)`
+const LogoWrapper = styled(({ isActive, ...props }) => <Link {...props} />)`
     display: flex;
     align-items: center;
     opacity: 0;
@@ -145,14 +145,14 @@ const LogoWrapper = styled(Link)`
         }
     }
 
-    ${props => props.active && css`
+    ${props => props.isActive && css`
         cursor: pointer;
         opacity: 1;
         margin-top: -.4rem;
     `}
 `
 
-const Toggle = styled.div`
+const Toggle = styled(({ isActive, ...props }) => <div {...props} />)`
     display: none;
     position: fixed;
     top: 0;
@@ -169,12 +169,12 @@ const Toggle = styled.div`
         display: flex;
     `}
 
-    ${props => props.active && css`
+    ${props => props.isActive && css`
         color: #111;
     `}
 `
 
-const LinksWrapper = styled.div`
+const LinksWrapper = styled(({ isToggled, ...props }) => <div {...props} />)`
     height: 100%;
     display: none;
     font-size: 1.1rem;
@@ -190,19 +190,23 @@ const LinksWrapper = styled.div`
         right: 0;
         padding: 0 4rem;
         background-color: #FFF;
-        height: auto;
+        height: calc(100vh - 5rem);
+        width: 100vw;
         border-radius: 6px;
         border-top-right-radius: 0;
         font-size: 1.7rem;
         border: 1px solid #CCC;
 
-        ${props => props.toggled && css`
-            display: block;
+        flex-direction: column;
+        justify-content: space-around;
+
+        ${props => props.isToggled && css`
+            display: flex;
         `}
     `}
 `
 
-const NavLink = styled(Link)`
+const NavLink = styled(({ isDark, isActive, ...props }) => <Link {...props} />)`
     position: relative;
     display: flex;
     justify-content: center;
@@ -217,13 +221,13 @@ const NavLink = styled(Link)`
     &:hover { color: #FFF; }
     &:hover::after { width: 60%; }
 
-    ${props => props.dark && css`
+    ${props => props.isDark && css`
         color: #111;
         &:hover { color: #111; }
     `}
 
     ${mobile`
-        margin: 2rem 0;
+        margin: 0;
         color: #111;
         &:hover { color: #111; }
     `}
@@ -244,7 +248,7 @@ const NavLink = styled(Link)`
         `}
     }
 
-    ${props => props.active && css`
+    ${props => props.isActive && css`
         &::after { width: 60%; }
     `}
 `

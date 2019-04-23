@@ -37,8 +37,12 @@ export default ({ data: { prismicContact: { uid, data }}}) => (
                         </p>
 
                         <p>
-                            {data.links.map(({ link_item, link_description, link_text }) => (
-                                <React.Fragment>
+                            {data.links.map(({
+                                link_item,
+                                link_description,
+                                link_text,
+                            }, index) => (
+                                <React.Fragment key={index}>
                                     <strong>{link_description}</strong>
                                     &nbsp;&bull;&nbsp;
                                     <a href={link_item.url} target={link_item.target}>
