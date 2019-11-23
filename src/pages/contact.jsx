@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { graphql } from "gatsby"
 
 import Meta from "../components/meta"
@@ -12,6 +12,7 @@ export default ({
   data: {
     prismicContact: { uid, data },
   },
+  ...props
 }) => (
   <Page>
     <Meta title={`${data.page_title.text} • Queerdenken`} />
@@ -68,7 +69,7 @@ export default ({
         method="POST"
         data-netlify="true"
         name="Contact"
-        action={`${current.props.location.pathname}?thanks`}
+        action={`${props.location.pathname}?thanks`}
       >
         <div className="field columns">
           <div className="column is-half">
@@ -113,7 +114,7 @@ export default ({
       </form>
     </ContentTube>
 
-    {current.props.location.search.indexOf("thanks") !== -1 && (
+    {props.location.search.indexOf("thanks") !== -1 && (
       <NotifContainer>
         <Notif>{data.thanks_text.text}</Notif>
       </NotifContainer>
@@ -127,19 +128,32 @@ const NotifContainer = styled.div`
   position: fixed;
   z-index: 300;
   color: #fff;
-  bottom: 0;
+  bottom: 10%;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
 `
 
+const fade = keyframes`
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+`
+
 const Notif = styled.div`
   max-width: 100%;
-  background: #000;
+  background: rgba(0, 0, 0, .7);
   padding: 20px 40px;
   text-align: center;
-  animation: 0.5s linear 5s 1 notif-fade-out forwards;
+  font-weight: bold;
+  font-size: 18px;
+  animation: 0.5s linear 5s 1 ${fade} forwards;
+  border-radius: 6px;
 `
 
 export const query = graphql`
