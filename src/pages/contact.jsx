@@ -62,8 +62,9 @@ export default ({ data: { prismicContact: { uid, data }}}) => (
 
             <form
                 className="form section"
-                action="https://formspree.io/contact@queerdenken.de"
                 method="POST"
+                data-netlify="true"
+                name="Contact"
             >
                 <div className="field columns">
                     <div className="column is-half">
