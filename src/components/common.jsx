@@ -1,5 +1,6 @@
 import React from "react"
 import styled, { css } from "styled-components"
+import { RichText } from "prismic-reactjs"
 
 export const mobile = (...args) => css`
     @media (max-width: 1000px) { ${css(...args)} }
@@ -23,11 +24,10 @@ export const colors = {
     link: "#D4CEFD",
 }
 
-const ContentBase = ({ html, className }) => (
-    <div
-        className={`content ${className}`}
-        dangerouslySetInnerHTML={{ __html: html }}
-    />
+const ContentBase = ({ data, className }) => (
+    <div className={`content ${className}`}>
+      {RichText.render(data)}
+    </div>
 )
 
 export const Content = styled(ContentBase)`
@@ -37,7 +37,7 @@ export const Content = styled(ContentBase)`
         background-image: linear-gradient(to right, #D4CEFD 0%, #D4CEFD 100%);
         background-repeat: repeat-x;
         background-position: 0 100%;
-        background-size: 100% 8px;
+        background-size: 100% 4px;
 
         &:hover {
             background-image: linear-gradient(to right, #c5bcff 0%, #c5bcff 100%);

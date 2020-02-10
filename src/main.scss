@@ -4,20 +4,24 @@
 $primary: #9282fd;
 $link: #4638a5;
 
-$accent: #CA2131;
+$accent: #ca2131;
 
-$box-shadow:
-  0 2px 3px
-  rgba(#111, 0.2),
-  0 0 0 1px
-  rgba(#111, 0.2);
+$box-shadow: 0 2px 3px rgba(#111, 0.2), 0 0 0 1px rgba(#111, 0.2);
 
 $box-padding: 2rem;
+$body-line-height: 1.7;
 
 @import "~normalize-scss/sass/normalize";
 @import "~bulma/bulma";
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,900|Amatic+SC:400,700");
 
-html, p, h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto', sans-serif;
+html,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", sans-serif;
 }
