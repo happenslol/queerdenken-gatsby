@@ -26,7 +26,6 @@ import {
 
 export default props => {
   const homeData = props.data.prismic.allHomes.edges[0].node
-  console.dir(homeData)
 
   return (
     <Page>

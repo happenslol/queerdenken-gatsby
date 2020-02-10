@@ -24,8 +24,8 @@ export const colors = {
     link: "#D4CEFD",
 }
 
-const ContentBase = ({ data, className }) => (
-    <div className={`content ${className}`}>
+const ContentBase = ({ data, className, key }) => (
+    <div className={`content ${className}`} key={key || 0}>
       {RichText.render(data)}
     </div>
 )

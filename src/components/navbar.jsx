@@ -28,16 +28,18 @@ export default function Navbar(props) {
           </Toggle>
 
           <LinksWrapper isToggled={opened}>
-            {pages.map(([url, link]) => (
-              <NavLink
-                to={`/${url}`}
-                key={url}
-                isActive={props.url === url}
-                isDark={props.active}
-              >
-                {link}
-              </NavLink>
-            ))}
+            {pages
+              .sort((a, b) => a[2] - b[2])
+              .map(([url, link]) => (
+                <NavLink
+                  to={`/${url}`}
+                  key={url}
+                  isActive={props.url === url}
+                  isDark={props.active}
+                >
+                  {link}
+                </NavLink>
+              ))}
           </LinksWrapper>
         </Nav>
       )}
@@ -62,10 +64,11 @@ const query = graphql`
           }
         }
       }
-      allPages {
+      allPages(where: { link_location_fulltext: "Navbar" }) {
         edges {
           node {
             link_title
+            index
             _meta {
               uid
             }
@@ -85,7 +88,11 @@ const NavData = ({ render }) => (
         data.prismic.allHomes.edges[0].node,
         ...data.prismic.allPages.edges.map(it => it.node),
       ].map(it => {
-        return [(it._meta || {}).uid || ``, RichText.asText(it.link_title)]
+        return [
+          (it._meta || {}).uid || ``,
+          RichText.asText(it.link_title),
+          it.index || 0,
+        ]
       })
 
       return render({ logoData, pages })

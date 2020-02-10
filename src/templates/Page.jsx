@@ -27,8 +27,8 @@ export default props => {
             case "text":
               return (
                 <section className="section" key={index}>
-                  {slice.fields.map(field => (
-                    <Content data={field.text_segment} />
+                  {slice.fields.map((field, fieldIndex) => (
+                    <Content data={field.text_segment} key={fieldIndex} />
                   ))}
                 </section>
               )
@@ -64,7 +64,7 @@ export default props => {
               )
             case "colored_sections":
               return (
-                <div>
+                <div key={index}>
                   <section className="section">
                     <ResumeTitle className="is-size-3">
                       {RichText.asText(slice.primary.title)}
@@ -86,13 +86,13 @@ export default props => {
               )
             case "centered_text":
               return (
-                <section className="section has-text-centered">
+                <section className="section has-text-centered" key={index}>
                   <Content data={slice.primary.text} />
                 </section>
               )
             case "3_text_columns":
               return (
-                <section className="section">
+                <section className="section" key={index}>
                   <div className="columns is-centered has-text-centered">
                     {slice.fields.map((field, fieldIndex) => (
                       <div className="column is-third" key={fieldIndex}>
@@ -110,6 +110,7 @@ export default props => {
                   data-netlify="true"
                   name="Contact"
                   action={`${props.location.pathname}?thanks`}
+                  key={index}
                 >
                   <div className="field columns">
                     <div className="column is-half">

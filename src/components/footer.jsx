@@ -1,9 +1,26 @@
 import React from "react"
 import styled from "styled-components"
+import { StaticQuery, graphql } from "gatsby"
+import { RichText } from "prismic-reactjs"
 
 const FooterBase = ({ className }) => (
   <footer className={`footer ${className}`}>
     <div className="content has-text-white">
+      <StaticQuery
+        query={linksQuery}
+        render={data =>
+          data.prismic.allPages.edges
+            .sort((a, b) => a.node.index - b.node.index)
+            .map((edge, index) => (
+              <React.Fragment key={index}>
+                <a href={edge.node._meta.uid}>
+                  {RichText.asText(edge.node.link_title)}
+                </a>
+                <br />
+              </React.Fragment>
+            ))
+        }
+      />
       <p>
         &copy; 2019 Julia Wirth, Queerdenken
         <br />
@@ -19,6 +36,24 @@ const FooterBase = ({ className }) => (
   </footer>
 )
 
+const linksQuery = graphql`
+  query {
+    prismic {
+      allPages(where: { link_location_fulltext: "Footer" }) {
+        edges {
+          node {
+            link_title
+            index
+            _meta {
+              uid
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
 export default styled(FooterBase)`
   margin-top: 4rem;
   width: 100vw;
@@ -31,7 +66,7 @@ export default styled(FooterBase)`
     align-items: baseline;
 
     a {
-      color: #DDD;
+      color: #ddd;
     }
   }
 `
