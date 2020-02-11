@@ -1,4 +1,5 @@
 import React from "react"
+import { createPortal } from "react-dom"
 import styled, { keyframes } from "styled-components"
 import { graphql } from "gatsby"
 
@@ -8,6 +9,7 @@ import Meta from "../components/meta"
 import { Hero } from "../components/hero"
 import { ContentTube, Page, Content, mobile } from "../components/common"
 import { RichText } from "prismic-reactjs"
+import usePortal from "../components/portal"
 
 export default props => {
   const pageData = props.data.prismic.allPages.edges[0].node
@@ -161,9 +163,13 @@ export default props => {
                   </div>
 
                   {props.location.search.indexOf("thanks") !== -1 && (
-                    <NotifContainer>
-                      <Notif>{RichText.asText(slice.primary.thank_you)}</Notif>
-                    </NotifContainer>
+                    <NotifPortal id="notif-portal">
+                      <NotifContainer>
+                        <Notif>
+                          {RichText.asText(slice.primary.thank_you)}
+                        </Notif>
+                      </NotifContainer>
+                    </NotifPortal>
                   )}
 
                   <input type="hidden" name="form-name" value="Contact" />
@@ -186,6 +192,11 @@ export default props => {
       <Footer />
     </Page>
   )
+}
+
+const NotifPortal = ({ id, children }) => {
+  const target = usePortal(id)
+  return createPortal(children, target)
 }
 
 const NotifContainer = styled.div`
