@@ -109,62 +109,7 @@ export default props => {
               )
             case "contact":
               return (
-                <form
-                  className="form section"
-                  method="POST"
-                  netlify="true"
-                  netlify-honeypot="bot-field"
-                  name="Contact"
-                  action={`${props.location.pathname}?thanks`}
-                  key={index}
-                >
-                  <div className="field columns">
-                    <div className="column is-half">
-                      <label className="label" htmlFor="name">
-                        Ihr Name
-                      </label>
-                      <div className="control">
-                        <input
-                          className="input"
-                          type="text"
-                          placeholder="Ihr Name"
-                          name="name"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="field columns">
-                    <div className="column is-half">
-                      <label className="label" htmlFor="_replyto">
-                        Ihre E-Mail
-                      </label>
-                      <div className="control">
-                        <input
-                          className="input"
-                          type="text"
-                          placeholder="adresse@email.de"
-                          name="_replyto"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="field columns">
-                    <div className="column is-third">
-                      <label className="label" htmlFor="message">
-                        Ihre Anfrage
-                      </label>
-                      <div className="control">
-                        <textarea
-                          className="textarea"
-                          placeholder="Ihre Nachricht"
-                          name="message"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
+                <>
                   {props.location.search.indexOf("thanks") !== -1 && (
                     <NotifPortal id="notif-portal">
                       <NotifContainer>
@@ -175,16 +120,73 @@ export default props => {
                     </NotifPortal>
                   )}
 
-                  <input type="hidden" name="form-name" value="Contact" />
+                  <form
+                    className="form section"
+                    method="POST"
+                    netlify="true"
+                    netlify-honeypot="bot-field"
+                    name="Contact"
+                    action={`${props.location.pathname}?thanks`}
+                    key={index}
+                  >
+                    <div className="field columns">
+                      <div className="column is-half">
+                        <label className="label" htmlFor="name">
+                          Ihr Name
+                        </label>
+                        <div className="control">
+                          <input
+                            className="input"
+                            type="text"
+                            placeholder="Ihr Name"
+                            name="name"
+                          />
+                        </div>
+                      </div>
+                    </div>
 
-                  <div className="field">
-                    <input
-                      className="button is-primary"
-                      type="submit"
-                      value="Absenden"
-                    />
-                  </div>
-                </form>
+                    <div className="field columns">
+                      <div className="column is-half">
+                        <label className="label" htmlFor="_replyto">
+                          Ihre E-Mail
+                        </label>
+                        <div className="control">
+                          <input
+                            className="input"
+                            type="text"
+                            placeholder="adresse@email.de"
+                            name="_replyto"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="field columns">
+                      <div className="column is-third">
+                        <label className="label" htmlFor="message">
+                          Ihre Anfrage
+                        </label>
+                        <div className="control">
+                          <textarea
+                            className="textarea"
+                            placeholder="Ihre Nachricht"
+                            name="message"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <input type="hidden" name="form-name" value="Contact" />
+
+                    <div className="field">
+                      <input
+                        className="button is-primary"
+                        type="submit"
+                        value="Absenden"
+                      />
+                    </div>
+                  </form>
+                </>
               )
             default:
               return <></>
