@@ -44,7 +44,7 @@ module.exports = {
             type: "Home",
             match: "/",
             path: "pages",
-            component: require.resolve("./src/templates/index.jsx"),
+            component: require.resolve("./src/pages/index.jsx"),
           },
           {
             type: "Page",
