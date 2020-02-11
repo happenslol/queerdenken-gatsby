@@ -25,7 +25,10 @@ import {
 } from "react-icons/fa"
 
 export default props => {
-  const homeData = props.data.prismic.allHomes.edges[0].node
+  const doc = props.data.prismic.allHomes.edges.slice(0, 1).pop()
+  if (!doc) return null
+
+  const homeData = doc.node
 
   return (
     <Page>

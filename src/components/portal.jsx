@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react"
+import { useRef, useEffect } from "react"
 
 /**
  * Creates DOM element to be used as React root.
@@ -55,7 +55,7 @@ function usePortal(id) {
         parentElem.remove()
       }
     }
-  }, [])
+  }, [id])
 
   /**
    * It's important we evaluate this lazily:

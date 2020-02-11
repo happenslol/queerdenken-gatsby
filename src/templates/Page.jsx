@@ -12,7 +12,10 @@ import { RichText } from "prismic-reactjs"
 import usePortal from "../components/portal"
 
 export default props => {
-  const pageData = props.data.prismic.allPages.edges[0].node
+  const doc = props.data.prismic.allPages.edges.slice(0, 1).pop()
+  if (!doc) return null
+
+  const pageData = doc.node
 
   return (
     <Page>
