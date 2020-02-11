@@ -50,7 +50,7 @@ module.exports = {
             type: "Page",
             match: "/:uid",
             path: "pages",
-            component: require.resolve("./src/templates/page.jsx"),
+            component: require.resolve("./src/templates/Page.jsx"),
           },
         ],
       },
