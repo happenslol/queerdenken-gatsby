@@ -26,7 +26,7 @@
     "gatsby-source-filesystem": "^2.1.48",
     "gatsby-source-prismic-graphql": "^3.4.0-beta.1",
     "gatsby-transformer-sharp": "^2.3.14",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "normalize-scss": "^7.0.1",
     "prismic-reactjs": "^1.2.0",
     "react": "^16.12.0",
